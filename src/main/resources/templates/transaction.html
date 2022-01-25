@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Sheet: Transactions</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>     
+                <li ><a th:href="@{/}">ZeroSheet</a></li>
+                <li><a href="html/contact.html">contact us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Transactions</h1>
+        <img th:src="@{/images/cover.png}" alt="cover-logo" width="50%" />
+        
+        <ul>
+            <li>Name of Items</li>
+            <li>Quantity</li>
+            <li>Due-back Date</li>
+            <li>Unit Price</li>
+        </ul>
+
+        <ul th:each = "item : ${items}">
+            <li th:text = "${item.name}">name</li>
+        </ul>
+
+
+        <form   
+                th:action="@{/transaction}"
+                method="POST"
+                th:object = "${Transaction}"   
+        >
+
+
+                   
+            <div th:each = "item : ${items}">
+                <label class="form-label" for="Quantity"></label>
+                <input 
+                    th:field = "*{quantity}"
+                    type = "text"
+                >
+            </div>
+        <!--
+            <div th:each = "item : ${items}">
+                <label class="form-label" for="DueBackDate"></label>
+                <input 
+                    th:field = "*{dueBackDate}"
+                    type = "text"
+                    placeholder="date"
+                >
+            </div>
+
+            <div>
+                <label class="form-label" for="transactionName">Transaction Name: </label> <br/>
+                <input
+                    th:class="|form-control ${#fields.hasErrors('transactionName')? 
+                    'is-invalid': 'is-valid'}|" 
+                    th:field = "*{transactionName}"
+                    type = "text"
+                >
+                <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('transactionName')}"
+                th:errors="*{transactionName}">
+                </div>
+            </div>
+        -->
+            <button type="submit" class="btn btn-primary mt-2">
+                Calculate Now
+            </button>
+        </form>
+    </main>
+
+    <footer>
+    </footer>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zero Sheet: Transaction Result </title>
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+
+<body>
+        <header>
+                <nav>
+                        <ul>                            
+                            <li ><a th:href="@{/}">ZeroSheet</a></li>
+                            <li><a href="html/contact.html">contact us</a></li>
+                        </ul>
+                    </nav>
+        </header>
+        <main>
+                <h1>Here is the Result for your transaction(s)</h1>
+                <a class="btn btn-secondary" th:href="@{/transaction}" id="another"
+                >Calculate another transaction</a>
+                <form 
+                        action="@{/transactions}"
+                        method="post"
+                        th:object="${transactionResult}"
+                        >
+                        <input type="submit">
+
+                </form>
+        </main>
+
+        <footer>
+                     
+        </footer>
+        
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
